@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+
+</head>
+
+<body>
+    <script>
+
+        // **************** AGENDA CRUD ******************************
+        // Exercicio 3: Agenda de contatos com edição
+        // Crie uma agenda de contatos que permita cadastrar,
+        // visualizar, editar e excluir contatos.
+        // Utilize switch case, while e estruturas condicionais para
+        // gerenciar as operações
+
+        // variavel com logica booleana para o loop while, fazer enquanto opção for verdadeira
+        let loopBreak = true
+        // Precisa criar o array escopo global para armazenar as variaveis nome, numero telefone 
+        let arrayAgenda = []
+
+
+
+
+        // Este looping funciona enquanto a variavel loopBreak fou verdadeira
+        while (loopBreak) {
+
+            let escolhaUsuario = parseInt(prompt(`
+          Escolha uma opção abaixo?
+        ---------------------------------
+        [ 1 ] - Cadstrar um usuário...
+        [ 2 ] - Visualizar um usuário...
+        [ 3 ] - Atualizar um usuário...
+        [ 4 ] - Excluir um usuário...
+        [ 5 ] - Sair do programa GRUD...
+        `))
+
+
+            switch (escolhaUsuario) {
+                case 1:
+
+                    // Começar o cadastro que é o POST
+                    let nome = prompt('Informe o seu primeiro nome: ')
+                    let numTelefone = prompt('Informe o seu numero de telefone: ')
+                    // let dataInformada = prompt("Digite uma data (formato MM/DD/AAAA):")
+                    // let dataFormatada = new Date(dataInformada).toLocaleDateString();
+
+
+
+                    // function oberDataDoUsuario() {
+
+
+                    // }
+
+                    // Utilizar o metodo push para acrescentar o nome e o numero de telefone no array criado
+                    // Para referenciar um objeto no java script utiliza {} para ajuntar as duas variaveis na mesma posição
+                    arrayAgenda.push({ nome, numTelefone })
+
+                    console.log(arrayAgenda);
+
+                    // Criar a variavel para receber a data atual e exibir na agenda
+
+
+                    // Alerta apos o cadastro ter sido cadastrado
+                    alert('Usuário cadastrado com sucesso na agenda! ')
+
+
+                    break;
+                case 2:
+                    // Listagem dos dados - > percorre o array de objetos
+
+                    //   criar varivel  do arrayagenda 
+                    let listaDeContato = "Lista de contatos \n"; // Precisa inicializar a variavel e O \n pula linha no java script, tem que criar um texto na variavel para inicializar
+                    for (let listaArray of arrayAgenda) {
+
+
+                        // Criar a variavel para receber a listaArray que contem o Nome e numTelefone
+                        // + É um operadore Unario é um incrementador
+                        listaDeContato += `Nome: ${listaArray.nome}, Número de telefone: ${listaArray.numTelefone}\n` // \n É para pular uma linha
+
+
+                    }
+                    // Visualizar a listagem
+                    alert(listaDeContato)
+
+                    break;
+                case 3:
+                    // Realizar metodo de atualização dos dados da agenda
+                    // Precisa especificar um arrray principal o nome ficou com principal ou seja o nome não altera
+                    let contatoatualizar = prompt("Informe um nome para realizar a edição: ")
+                    // Comparação ternario para verificar se o nome digitado esta no ARRAYAGENDA
+                    let contatoBuscado = arrayAgenda.find(buscarNome => buscarNome.nome === contatoatualizar)
+
+                    if (contatoBuscado) {
+                        contatoBuscado.numTelefone = prompt("Informe o novo número de celular: ")
+
+                    } else {
+                        alert("Nenhum usuário foi encontrado")
+                    }
+
+
+
+
+
+                    break;
+                case 4:
+                    // relealizar o delete do usuario
+                    // Encontrar o usuario a ser deletado
+                    let contatoExcluir = prompt("Informe o nome do usuário a ser excluído: ")
+                    // Informar o nome a ser excluido    Metodo array e nome da variavel, utilizar findIndex para pegar a primeira posição do array
+                    let contatoParaExcluir = arrayAgenda.findIndex(excluirNome => excluirNome.nome === contatoExcluir)
+
+                    // realizar a comparação foi colocado diferente -1 para subtrair a posição da array -1
+                    if (contatoParaExcluir !== -1) {
+                        // Irá localizar o nome se tiver dentro o array ira excluir
+                        alert("Contato excluído com sucesso!!")
+                        //                 nome               quantidade 1
+                        arrayAgenda.splice(contatoParaExcluir, 1)
+
+
+
+                    } else {
+                        alert("Nenhum usuário foi encontrado")
+                    }
+
+
+
+
+                    break;
+                case 5:
+                    // Para finalizar a agenda com a função nativa do java script
+                    alert('Até a próxima, velho amigo...')
+
+                    // Se escolher a opção invalida esta função saira do looping tornado a variavel loopBreak = False
+                    loopBreak = false
+
+                    break;
+
+
+                default:
+                    alert('Opção inválida, Tente novamente...')
+                    break;
+            }
+
+
+        }
+    </script>
+
+</body>
+
+</html>
